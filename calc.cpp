@@ -16,7 +16,7 @@ template <class T> class Stack
         T data;
         Node *next;
     };
-    Node *last, *buf;
+    Node *last, *buf, *prev;
     bool first;
     Stack() { last = NULL; s_size = 0; buf = NULL; first = true; } /* init cinstructor */
     ~Stack() { delete last; }
@@ -41,7 +41,9 @@ template <class T> class Stack
     }
     void pop()
     {
-            last = last->next;
+            prev = last->next;
+            delete last;
+            last = prev;
             buf = last;
             s_size--;
     }
