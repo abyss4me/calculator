@@ -19,13 +19,13 @@ template <class T> class Stack
     Node *last, *buf;
     bool first;
     Stack() { last = NULL; s_size = 0; buf = NULL; first = true; } /* init cinstructor */
+    ~Stack() { delete last; }
     void push( T t )
     {
             Node *p = new Node; /* creating new node */
             p->data = t;
             if ( first )        /* if node in stack is first I just terminate it's 'next' pointer by NULL and drop flag */
             {
-                p->next = NULL;
                 buf = p;
                 last = p;
                 first = false; /* create first node - flag */
@@ -35,6 +35,8 @@ template <class T> class Stack
                 buf = p;
                 last = p;
             }
+            if ( s_size == 0 )
+              last->next = NULL;
             s_size++;
     }
     void pop()
@@ -117,6 +119,7 @@ char str[50];
     }
    // printf()
     printf("    %3.4f\n",atof(st.top()));
+
 }
 
 int main(int argc, char*argv[]) /* main programm*/
