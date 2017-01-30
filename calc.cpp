@@ -128,6 +128,21 @@ char str[50];
             snprintf(str, sizeof(str),"%f",a);
             st.push(str);
         }
+        else if (( *argv[n] == '%'))
+        {
+            a = atof(st.top());
+            st.pop();
+            b = atof(st.top());
+            st.pop();
+            f = (float)(a * b) / 100;
+            if ( *argv[++n] == '-' )
+            {
+                f = b - f;
+            }
+            snprintf(str, sizeof(str),"%f",f);
+            st.push(str);
+            //n++;
+        }
             else
                 {st.push(argv[n]);
         }
