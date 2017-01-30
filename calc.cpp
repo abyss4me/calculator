@@ -62,6 +62,7 @@ void ReadString(int c, char*argv[])
 Stack<char*>st;
 count_of_par = c;
 int n = 1;
+int pow;
 float a=0, b=0;
 float f, s;
 char str[50];
@@ -110,10 +111,23 @@ char str[50];
             f = (float)b / a;
 //char *s = (char*)&f;
             snprintf(str, sizeof(str),"%f",f);
-
-           // cout<<str<<endl;
             st.push(str);
             }
+        else if ( *argv[n] == '^')
+        {
+            f = 0;
+            pow = atof(st.top());
+            st.pop();
+            a = atof(st.top());
+            b = a;
+            st.pop();
+            for (int i=1; i<=pow-1; i++)
+                a = a * b;
+//char *s = (char*)&f;
+
+            snprintf(str, sizeof(str),"%f",a);
+            st.push(str);
+        }
             else
                 {st.push(argv[n]);
         }
